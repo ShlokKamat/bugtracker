@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="25dp"
+        android:fontFamily="@font/roboto"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/newbug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Report new bug"
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/bugbtn"
+            android:padding="30dp"
+            android:drawablePadding="40dp"
+            android:textSize="18dp"/>
+        <Button
+            android:id="@+id/showbug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Show bugs"
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/showbugbtn"
+            android:padding="30dp"
+            android:drawablePadding="40dp"
+            android:textSize="18dp"/>
+        <Button
+            android:id="@+id/mybug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="My reported bugs"
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/userbtn"
+            android:padding="30dp"
+            android:drawablePadding="40dp"
+            android:textSize="18dp"/>
+        <Button
+            android:id="@+id/resbug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Resolved bugs"
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/resolvedbtn"
+            android:padding="30dp"
+            android:drawablePadding="40dp"
+            android:textSize="18dp"/>
+        <Button
+            android:id="@+id/allbug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="All reported bugs"
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/allusersbtn"
+            android:padding="30dp"
+            android:drawablePadding="40dp"
+            android:textSize="18dp"/>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
