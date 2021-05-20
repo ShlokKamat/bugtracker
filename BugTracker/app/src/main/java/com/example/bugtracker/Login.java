@@ -3,6 +3,7 @@ package com.example.bugtracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,11 +34,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        //Hard-coding "admin" user
-        databaseHelper = new DatabaseHelper(Login.this);
-        UserModel userModel = new UserModel("admin","admin");
-        boolean userCreated = databaseHelper.addUser(userModel);
         //Getting all users
+        databaseHelper = new DatabaseHelper(Login.this);
         List<UserModel> userList = databaseHelper.getUsers();
 
         username=(EditText)findViewById(R.id.username);
@@ -49,6 +47,12 @@ public class Login extends AppCompatActivity {
 
         signuphere=(TextView)findViewById(R.id.signuphere);
         signup = new Intent(this,SignUp.class);
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            loadData();
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,5 +165,24 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadData() {
+        //Hard-coding "admin" user
+        UserModel userModel = new UserModel("admin","admin");
+        databaseHelper = new DatabaseHelper(Login.this);
+        boolean userCreated = databaseHelper.addUser(userModel);
+
+        //Adding some bugs
+        DatabaseHelper2 databaseHelper2 = new DatabaseHelper2(Login.this);
+        BugModel bugModel = new BugModel(-1,"App Logo not showing","Install the application and check the app icon under app menu",1,"admin","19 May 2021","","",0,"");
+        boolean b = databaseHelper2.addBug(bugModel);
+        bugModel = new BugModel(-1,"App crashes on launch","Install the application and add data to all fields and submit. It will crash after the \"Successful\" message.",3,"admin","17 May 2021","admin","20 May 2021",1,"Update to the latest version of the app");
+        b = databaseHelper2.addBug(bugModel);
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
     }
 }
